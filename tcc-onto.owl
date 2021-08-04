@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto">
+    <Prefix name="" IRI="http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://www.w3.org/ns/ssn/</Import>
+    <Declaration>
+        <Class IRI="#AmbienceSound"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AmbienceVisuals"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Ambient"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Camera"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DistribuitionOfSensorsOnTheRoom"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Door"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DoorSensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DoorWindowInteraction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DoorWindowMonitoring"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DoorWindowStatusChange"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DoorWindowsStatus"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Home"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LiveFeed"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LiveImages"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LiveTransmission"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MotionSensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MovementAlert"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MovementOccurring"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MovementOnTheRoom"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MovementOnTheRoomMonitoring"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NoiseTrigger"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NoiseTriggerProcedure"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RaspberryPi"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Siren"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Window"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WindowSensor"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#AmbienceSound"/>
+        <Class IRI="http://www.w3.org/ns/sosa/ActuatableProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AmbienceVisuals"/>
+        <Class IRI="http://www.w3.org/ns/sosa/ObservableProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ambient"/>
+        <Class IRI="http://www.w3.org/ns/sosa/ObservableProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Camera"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Sensor"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DistribuitionOfSensorsOnTheRoom"/>
+        <Class IRI="http://www.w3.org/ns/ssn/Deployment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Door"/>
+        <Class IRI="http://www.w3.org/ns/sosa/ObservableProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DoorSensor"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Sensor"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DoorWindowInteraction"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DoorWindowMonitoring"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Procedure"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DoorWindowStatusChange"/>
+        <Class IRI="http://www.w3.org/ns/ssn/Stimulus"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DoorWindowsStatus"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Result"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Home"/>
+        <Class IRI="http://www.w3.org/ns/sosa/FeatureOfInterest"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LiveFeed"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LiveImages"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Result"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LiveTransmission"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Procedure"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MotionSensor"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Sensor"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MovementAlert"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Result"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MovementOccurring"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MovementOnTheRoom"/>
+        <Class IRI="http://www.w3.org/ns/ssn/Stimulus"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MovementOnTheRoomMonitoring"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Procedure"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NoiseTrigger"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Actuation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NoiseTriggerProcedure"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Procedure"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RaspberryPi"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Platform"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Siren"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Actuator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Window"/>
+        <Class IRI="http://www.w3.org/ns/sosa/ObservableProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WindowSensor"/>
+        <Class IRI="http://www.w3.org/ns/sosa/Sensor"/>
+    </SubClassOf>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

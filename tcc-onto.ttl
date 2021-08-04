@@ -1,0 +1,160 @@
+@prefix : <http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto> .
+
+<http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto> rdf:type owl:Ontology ;
+                                                               owl:imports <http://www.w3.org/ns/ssn/> .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#ActuationProcedures
+:ActuationProcedures rdf:type owl:Class ;
+                     rdfs:subClassOf <http://www.w3.org/ns/sosa/Procedure> ;
+                     rdfs:comment "Classe base para procedimentos de atuação" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#AmbienceSound
+:AmbienceSound rdf:type owl:Class ;
+               rdfs:subClassOf <http://www.w3.org/ns/sosa/ActuatableProperty> ;
+               rdfs:comment "Som do ambiente, que sofrerá mudanças pelo barulho do alarme" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#AmbienceVisuals
+:AmbienceVisuals rdf:type owl:Class ;
+                 rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+                 rdfs:comment "Ambiente visual, que será observado pela câmera" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#Ambient
+:Ambient rdf:type owl:Class ;
+         rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+         rdfs:comment "O ambiente em si, ou seja, um cômodo, que será observado pelo sensor de movimento" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#Camera
+:Camera rdf:type owl:Class ;
+        rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ;
+        rdfs:comment "Câmera" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#DistribuitionOfSensorsOnTheRoom
+:DistribuitionOfSensorsOnTheRoom rdf:type owl:Class ;
+                                 rdfs:subClassOf <http://www.w3.org/ns/ssn/Deployment> ;
+                                 rdfs:comment "A lógica de distribuição dos sistemas na residência e suas ligações com as plataformas" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#Door
+:Door rdf:type owl:Class ;
+      rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+      rdfs:comment "Portas" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#DoorSensor
+:DoorSensor rdf:type owl:Class ;
+            rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ;
+            rdfs:comment "Sensor de porta" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#DoorWindowInteraction
+:DoorWindowInteraction rdf:type owl:Class ;
+                       rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ;
+                       rdfs:comment "Observa interações com portas e janelas, ou seja, quando elas são abertas ou fechadas" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#DoorWindowStatusChange
+:DoorWindowStatusChange rdf:type owl:Class ;
+                        rdfs:subClassOf <http://www.w3.org/ns/ssn/Stimulus> ;
+                        rdfs:comment "Abertura ou fechamento das janelas e portas, ativando os sensores correspondentes" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#DoorWindowsStatus
+:DoorWindowsStatus rdf:type owl:Class ;
+                   rdfs:subClassOf <http://www.w3.org/ns/sosa/Result> ;
+                   rdfs:comment "Resultado da observação de portas e janelas" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#Home
+:Home rdf:type owl:Class ;
+      rdfs:subClassOf <http://www.w3.org/ns/sosa/FeatureOfInterest> ;
+      rdfs:comment "A residência com a qual o sistema interage" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#LiveFeed
+:LiveFeed rdf:type owl:Class ;
+          rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ;
+          rdfs:comment "Observa visualmente o ambiente, gravando o que ocorre" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#LiveImages
+:LiveImages rdf:type owl:Class ;
+            rdfs:subClassOf <http://www.w3.org/ns/sosa/Result> ;
+            rdfs:comment "Resultado da observação da câmera" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#MotionSensor
+:MotionSensor rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ;
+              rdfs:comment "Sensor de movimento" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#MovementAlert
+:MovementAlert rdf:type owl:Class ;
+               rdfs:subClassOf <http://www.w3.org/ns/sosa/Result> ;
+               rdfs:comment "Resultado da observação do sensor de movimento" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#MovementOccurring
+:MovementOccurring rdf:type owl:Class ;
+                   rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ;
+                   rdfs:comment "Observa a ocorrência de movimentos no ambiente" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#MovementOnTheRoom
+:MovementOnTheRoom rdf:type owl:Class ;
+                   rdfs:subClassOf <http://www.w3.org/ns/ssn/Stimulus> ;
+                   rdfs:comment "Movimentação na sala, ativando o sensor de movimento" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#NoiseTrigger
+:NoiseTrigger rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.w3.org/ns/sosa/Actuation> ;
+              rdfs:comment "Atuação que ocorre quando o alarme deve ser ativado" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#ObservationProcedures
+:ObservationProcedures rdf:type owl:Class ;
+                       rdfs:subClassOf <http://www.w3.org/ns/sosa/Procedure> ;
+                       rdfs:comment "Classe base para procedimentos de observação" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#RaspberryPi
+:RaspberryPi rdf:type owl:Class ;
+             rdfs:subClassOf <http://www.w3.org/ns/sosa/Platform> ;
+             rdfs:comment "A plataforma que interage com os sesnores diretamente" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#Siren
+:Siren rdf:type owl:Class ;
+       rdfs:subClassOf <http://www.w3.org/ns/sosa/Actuator> ;
+       rdfs:comment "Alarme" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#Window
+:Window rdf:type owl:Class ;
+        rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+        rdfs:comment "Janelas" .
+
+
+###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#WindowSensor
+:WindowSensor rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ;
+              rdfs:comment "Sensor de janela" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
