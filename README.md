@@ -1,2 +1,2 @@
 # ontologies-repo
-ontologies made/used by me in the course of my graduation paper
+ontologies made/used by me and @VinZacarias in the course of our graduation paper
