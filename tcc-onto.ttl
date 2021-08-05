@@ -15,25 +15,69 @@
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#ActuationProcedures
 :ActuationProcedures rdf:type owl:Class ;
-                     rdfs:subClassOf <http://www.w3.org/ns/sosa/Procedure> ;
+                     rdfs:subClassOf <http://www.w3.org/ns/sosa/Procedure> ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty <http://www.w3.org/ns/ssn/implementedBy> ;
+                                       owl:allValuesFrom :Siren
+                                     ] ;
                      rdfs:comment "Classe base para procedimentos de atuação" .
 
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#AmbienceSound
 :AmbienceSound rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.w3.org/ns/sosa/ActuatableProperty> ;
+               rdfs:subClassOf <http://www.w3.org/ns/sosa/ActuatableProperty> ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://www.w3.org/ns/sosa/isActedOnBy> ;
+                                 owl:allValuesFrom :NoiseTrigger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://www.w3.org/ns/ssn/isPropertyOf> ;
+                                 owl:allValuesFrom :Home
+                               ] ;
                rdfs:comment "Som do ambiente, que sofrerá mudanças pelo barulho do alarme" .
 
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#AmbienceVisuals
 :AmbienceVisuals rdf:type owl:Class ;
-                 rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+                 rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty <http://www.w3.org/ns/sosa/isObservedBy> ;
+                                   owl:allValuesFrom :Camera
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty <http://www.w3.org/ns/ssn/isPropertyOf> ;
+                                   owl:allValuesFrom :Home
+                                 ] ;
                  rdfs:comment "Ambiente visual, que será observado pela câmera" .
 
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#Ambient
 :Ambient rdf:type owl:Class ;
-         rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+         rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.w3.org/ns/sosa/isObservedBy> ;
+                           owl:allValuesFrom :Camera
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.w3.org/ns/sosa/isObservedBy> ;
+                           owl:allValuesFrom :MotionSensor
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                           owl:allValuesFrom :LiveFeed
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                           owl:allValuesFrom :MovementOccurring
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.w3.org/ns/ssn/isPropertyOf> ;
+                           owl:allValuesFrom :Home
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://www.w3.org/ns/ssn/isProxyFor> ;
+                           owl:allValuesFrom :MovementOnTheRoom
+                         ] ;
          rdfs:comment "O ambiente em si, ou seja, um cômodo, que será observado pelo sensor de movimento" .
 
 
@@ -41,28 +85,16 @@
 :Camera rdf:type owl:Class ;
         rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
-                          owl:allValuesFrom :Home
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
-                          owl:allValuesFrom :LiveImages
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
-                          owl:allValuesFrom :AmbienceVisuals
+                          owl:onProperty <http://www.w3.org/ns/sosa/isHostedBy> ;
+                          owl:allValuesFrom :RaspberryPi
                         ] ,
                         [ rdf:type owl:Restriction ;
                           owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
-                          owl:allValuesFrom :LiveFeed
+                          owl:allValuesFrom :AmbienceVisuals
                         ] ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty <http://www.w3.org/ns/sosa/usedProcedure> ;
-                          owl:allValuesFrom :ObservationProcedures
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty <http://www.w3.org/ns/ssn/deployedOnPlatform> ;
-                          owl:allValuesFrom :RaspberryPi
+                          owl:onProperty <http://www.w3.org/ns/ssn/forProperty> ;
+                          owl:allValuesFrom :AmbienceVisuals
                         ] ,
                         [ rdf:type owl:Restriction ;
                           owl:onProperty <http://www.w3.org/ns/ssn/hasDeployment> ;
@@ -73,13 +105,37 @@
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#DistribuitionOfSensorsOnTheRoom
 :DistribuitionOfSensorsOnTheRoom rdf:type owl:Class ;
-                                 rdfs:subClassOf <http://www.w3.org/ns/ssn/Deployment> ;
+                                 rdfs:subClassOf <http://www.w3.org/ns/ssn/Deployment> ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://www.w3.org/ns/ssn/deployedSystem> ;
+                                                   owl:allValuesFrom :Camera
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://www.w3.org/ns/ssn/deployedSystem> ;
+                                                   owl:allValuesFrom :DoorSensor
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://www.w3.org/ns/ssn/deployedSystem> ;
+                                                   owl:allValuesFrom :MotionSensor
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://www.w3.org/ns/ssn/deployedSystem> ;
+                                                   owl:allValuesFrom :Siren
+                                                 ] ,
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty <http://www.w3.org/ns/ssn/deployedSystem> ;
+                                                   owl:allValuesFrom :WindowSensor
+                                                 ] ;
                                  rdfs:comment "A lógica de distribuição dos sistemas na residência e suas ligações com as plataformas" .
 
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#Door
 :Door rdf:type owl:Class ;
-      rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+      rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://www.w3.org/ns/sosa/isObservedBy> ;
+                        owl:allValuesFrom :DoorSensor
+                      ] ;
       rdfs:comment "Portas" .
 
 
@@ -87,28 +143,16 @@
 :DoorSensor rdf:type owl:Class ;
             rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
-                              owl:allValuesFrom :Home
+                              owl:onProperty <http://www.w3.org/ns/sosa/isHostedBy> ;
+                              owl:allValuesFrom :RaspberryPi
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
-                              owl:allValuesFrom :DoorWindowsStatus
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
-                              owl:allValuesFrom :Door
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                              owl:onProperty <http://www.w3.org/ns/sosa/madeObservation> ;
                               owl:allValuesFrom :DoorWindowInteraction
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty <http://www.w3.org/ns/sosa/usedProcedure> ;
-                              owl:allValuesFrom :ObservationProcedures
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty <http://www.w3.org/ns/ssn/deployedOnPlatform> ;
-                              owl:allValuesFrom :RaspberryPi
+                              owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                              owl:allValuesFrom :Door
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty <http://www.w3.org/ns/ssn/detects> ;
@@ -117,13 +161,45 @@
                             [ rdf:type owl:Restriction ;
                               owl:onProperty <http://www.w3.org/ns/ssn/hasDeployment> ;
                               owl:allValuesFrom :DistribuitionOfSensorsOnTheRoom
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty <http://www.w3.org/ns/ssn/implements> ;
+                              owl:allValuesFrom :ObservationProcedures
                             ] ;
             rdfs:comment "Sensor de porta" .
 
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#DoorWindowInteraction
 :DoorWindowInteraction rdf:type owl:Class ;
-                       rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ;
+                       rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
+                                         owl:allValuesFrom :Home
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
+                                         owl:allValuesFrom :DoorWindowsStatus
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://www.w3.org/ns/sosa/madeBySensor> ;
+                                         owl:allValuesFrom :DoorSensor
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://www.w3.org/ns/sosa/madeBySensor> ;
+                                         owl:allValuesFrom :WindowSensor
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                                         owl:allValuesFrom :Door
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                                         owl:allValuesFrom :Window
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://www.w3.org/ns/ssn/wasOriginatedBy> ;
+                                         owl:allValuesFrom :DoorWindowStatusChange
+                                       ] ;
                        rdfs:comment "Observa interações com portas e janelas, ou seja, quando elas são abertas ou fechadas" .
 
 
@@ -131,7 +207,23 @@
 :DoorWindowStatusChange rdf:type owl:Class ;
                         rdfs:subClassOf <http://www.w3.org/ns/ssn/Stimulus> ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                          owl:onProperty <http://www.w3.org/ns/ssn/detects> ;
+                                          owl:allValuesFrom :DoorSensor
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://www.w3.org/ns/ssn/detects> ;
+                                          owl:allValuesFrom :WindowSensor
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://www.w3.org/ns/ssn/isProxyFor> ;
+                                          owl:allValuesFrom :Door
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://www.w3.org/ns/ssn/isProxyFor> ;
+                                          owl:allValuesFrom :Window
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty <http://www.w3.org/ns/ssn/wasOriginatedBy> ;
                                           owl:allValuesFrom :DoorWindowInteraction
                                         ] ;
                         rdfs:comment "Abertura ou fechamento das janelas e portas, ativando os sensores correspondentes" .
@@ -145,13 +237,45 @@
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#Home
 :Home rdf:type owl:Class ;
-      rdfs:subClassOf <http://www.w3.org/ns/sosa/FeatureOfInterest> ;
+      rdfs:subClassOf <http://www.w3.org/ns/sosa/FeatureOfInterest> ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://www.w3.org/ns/ssn/hasProperty> ;
+                        owl:allValuesFrom :AmbienceSound
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://www.w3.org/ns/ssn/hasProperty> ;
+                        owl:allValuesFrom :AmbienceVisuals
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://www.w3.org/ns/ssn/hasProperty> ;
+                        owl:allValuesFrom :Ambient
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://www.w3.org/ns/ssn/hasProperty> ;
+                        owl:allValuesFrom :Door
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://www.w3.org/ns/ssn/hasProperty> ;
+                        owl:allValuesFrom :Window
+                      ] ;
       rdfs:comment "A residência com a qual o sistema interage" .
 
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#LiveFeed
 :LiveFeed rdf:type owl:Class ;
-          rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ;
+          rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
+                            owl:allValuesFrom :Home
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.w3.org/ns/sosa/madeBySensor> ;
+                            owl:allValuesFrom :Camera
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                            owl:allValuesFrom :AmbienceVisuals
+                          ] ;
           rdfs:comment "Observa visualmente o ambiente, gravando o que ocorre" .
 
 
@@ -165,28 +289,16 @@
 :MotionSensor rdf:type owl:Class ;
               rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
-                                owl:allValuesFrom :Home
+                                owl:onProperty <http://www.w3.org/ns/sosa/isHostedBy> ;
+                                owl:allValuesFrom :RaspberryPi
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
-                                owl:allValuesFrom :MovementAlert
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
-                                owl:allValuesFrom :Ambient
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                owl:onProperty <http://www.w3.org/ns/sosa/madeObservation> ;
                                 owl:allValuesFrom :MovementOccurring
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/ns/sosa/usedProcedure> ;
-                                owl:allValuesFrom :ObservationProcedures
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/ns/ssn/deployedOnPlatform> ;
-                                owl:allValuesFrom :RaspberryPi
+                                owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                owl:allValuesFrom :Ambient
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty <http://www.w3.org/ns/ssn/detects> ;
@@ -195,6 +307,10 @@
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty <http://www.w3.org/ns/ssn/hasDeployment> ;
                                 owl:allValuesFrom :DistribuitionOfSensorsOnTheRoom
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://www.w3.org/ns/ssn/implements> ;
+                                owl:allValuesFrom :ObservationProcedures
                               ] ;
               rdfs:comment "Sensor de movimento" .
 
@@ -207,7 +323,23 @@
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#MovementOccurring
 :MovementOccurring rdf:type owl:Class ;
-                   rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ;
+                   rdfs:subClassOf <http://www.w3.org/ns/sosa/Observation> ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
+                                     owl:allValuesFrom :Home
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty <http://www.w3.org/ns/sosa/madeBySensor> ;
+                                     owl:allValuesFrom :MotionSensor
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
+                                     owl:allValuesFrom :Ambient
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty <http://www.w3.org/ns/ssn/wasOriginatedBy> ;
+                                     owl:allValuesFrom :MovementOnTheRoom
+                                   ] ;
                    rdfs:comment "Observa a ocorrência de movimentos no ambiente" .
 
 
@@ -215,27 +347,91 @@
 :MovementOnTheRoom rdf:type owl:Class ;
                    rdfs:subClassOf <http://www.w3.org/ns/ssn/Stimulus> ,
                                    [ rdf:type owl:Restriction ;
-                                     owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
-                                     owl:allValuesFrom :DoorWindowInteraction
+                                     owl:onProperty <http://www.w3.org/ns/ssn/detects> ;
+                                     owl:allValuesFrom :MotionSensor
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty <http://www.w3.org/ns/ssn/isProxyFor> ;
+                                     owl:allValuesFrom :Ambient
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty <http://www.w3.org/ns/ssn/wasOriginatedBy> ;
+                                     owl:allValuesFrom :MovementOccurring
                                    ] ;
                    rdfs:comment "Movimentação na sala, ativando o sensor de movimento" .
 
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#NoiseTrigger
 :NoiseTrigger rdf:type owl:Class ;
-              rdfs:subClassOf <http://www.w3.org/ns/sosa/Actuation> ;
+              rdfs:subClassOf <http://www.w3.org/ns/sosa/Actuation> ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://www.w3.org/ns/sosa/actsOnProperty> ;
+                                owl:allValuesFrom :AmbienceSound
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
+                                owl:allValuesFrom :Home
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://www.w3.org/ns/sosa/usedProcedure> ;
+                                owl:allValuesFrom :ActuationProcedures
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://www.w3.org/ns/sosa/usedProcedure> ;
+                                owl:allValuesFrom :Siren
+                              ] ;
               rdfs:comment "Atuação que ocorre quando o alarme deve ser ativado" .
 
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#ObservationProcedures
 :ObservationProcedures rdf:type owl:Class ;
-                       rdfs:subClassOf <http://www.w3.org/ns/sosa/Procedure> ;
+                       rdfs:subClassOf <http://www.w3.org/ns/sosa/Procedure> ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://www.w3.org/ns/ssn/implementedBy> ;
+                                         owl:allValuesFrom :Camera
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://www.w3.org/ns/ssn/implementedBy> ;
+                                         owl:allValuesFrom :DoorSensor
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://www.w3.org/ns/ssn/implementedBy> ;
+                                         owl:allValuesFrom :MotionSensor
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://www.w3.org/ns/ssn/implementedBy> ;
+                                         owl:allValuesFrom :WindowSensor
+                                       ] ;
                        rdfs:comment "Classe base para procedimentos de observação" .
 
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#RaspberryPi
 :RaspberryPi rdf:type owl:Class ;
-             rdfs:subClassOf <http://www.w3.org/ns/sosa/Platform> ;
+             rdfs:subClassOf <http://www.w3.org/ns/sosa/Platform> ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://www.w3.org/ns/sosa/hosts> ;
+                               owl:allValuesFrom :Camera
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://www.w3.org/ns/sosa/hosts> ;
+                               owl:allValuesFrom :DoorSensor
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://www.w3.org/ns/sosa/hosts> ;
+                               owl:allValuesFrom :MotionSensor
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://www.w3.org/ns/sosa/hosts> ;
+                               owl:allValuesFrom :Siren
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://www.w3.org/ns/sosa/hosts> ;
+                               owl:allValuesFrom :WindowSensor
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <http://www.w3.org/ns/ssn/inDeployment> ;
+                               owl:allValuesFrom :DistribuitionOfSensorsOnTheRoom
+                             ] ;
              rdfs:comment "A plataforma que interage com os sesnores diretamente" .
 
 
@@ -243,35 +439,35 @@
 :Siren rdf:type owl:Class ;
        rdfs:subClassOf <http://www.w3.org/ns/sosa/Actuator> ,
                        [ rdf:type owl:Restriction ;
-                         owl:onProperty <http://www.w3.org/ns/sosa/actsOnProperty> ;
-                         owl:allValuesFrom :AmbienceSound
-                       ] ,
-                       [ rdf:type owl:Restriction ;
-                         owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
-                         owl:allValuesFrom :Home
+                         owl:onProperty <http://www.w3.org/ns/sosa/isHostedBy> ;
+                         owl:allValuesFrom :RaspberryPi
                        ] ,
                        [ rdf:type owl:Restriction ;
                          owl:onProperty <http://www.w3.org/ns/sosa/madeActuation> ;
                          owl:allValuesFrom :NoiseTrigger
                        ] ,
                        [ rdf:type owl:Restriction ;
-                         owl:onProperty <http://www.w3.org/ns/sosa/usedProcedure> ;
-                         owl:allValuesFrom :ActuationProcedures
-                       ] ,
-                       [ rdf:type owl:Restriction ;
-                         owl:onProperty <http://www.w3.org/ns/ssn/deployedOnPlatform> ;
-                         owl:allValuesFrom :RaspberryPi
+                         owl:onProperty <http://www.w3.org/ns/ssn/forProperty> ;
+                         owl:allValuesFrom :AmbienceSound
                        ] ,
                        [ rdf:type owl:Restriction ;
                          owl:onProperty <http://www.w3.org/ns/ssn/hasDeployment> ;
                          owl:allValuesFrom :DistribuitionOfSensorsOnTheRoom
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty <http://www.w3.org/ns/ssn/implements> ;
+                         owl:allValuesFrom :ActuationProcedures
                        ] ;
        rdfs:comment "Alarme" .
 
 
 ###  http://www.semanticweb.org/heywt/ontologies/2021/6/tcc-onto#Window
 :Window rdf:type owl:Class ;
-        rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ;
+        rdfs:subClassOf <http://www.w3.org/ns/sosa/ObservableProperty> ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty <http://www.w3.org/ns/sosa/isObservedBy> ;
+                          owl:allValuesFrom :WindowSensor
+                        ] ;
         rdfs:comment "Janelas" .
 
 
@@ -279,28 +475,16 @@
 :WindowSensor rdf:type owl:Class ;
               rdfs:subClassOf <http://www.w3.org/ns/sosa/Sensor> ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/ns/sosa/hasFeatureOfInterest> ;
-                                owl:allValuesFrom :Home
+                                owl:onProperty <http://www.w3.org/ns/sosa/isHostedBy> ;
+                                owl:allValuesFrom :RaspberryPi
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/ns/sosa/hasResult> ;
-                                owl:allValuesFrom :DoorWindowsStatus
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/ns/sosa/observedProperty> ;
-                                owl:allValuesFrom :Window
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                owl:onProperty <http://www.w3.org/ns/sosa/madeObservation> ;
                                 owl:allValuesFrom :DoorWindowInteraction
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/ns/sosa/usedProcedure> ;
-                                owl:allValuesFrom :ObservationProcedures
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty <http://www.w3.org/ns/ssn/deployedOnPlatform> ;
-                                owl:allValuesFrom :RaspberryPi
+                                owl:onProperty <http://www.w3.org/ns/sosa/observes> ;
+                                owl:allValuesFrom :Window
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty <http://www.w3.org/ns/ssn/detects> ;
@@ -309,6 +493,10 @@
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty <http://www.w3.org/ns/ssn/hasDeployment> ;
                                 owl:allValuesFrom :DistribuitionOfSensorsOnTheRoom
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty <http://www.w3.org/ns/ssn/implements> ;
+                                owl:allValuesFrom :ObservationProcedures
                               ] ;
               rdfs:comment "Sensor de janela" .
 
